@@ -34,6 +34,68 @@
     el.addEventListener('scroll', listener)
   }
 
+  const slugify = (text) => {
+    return String(text)
+      .toLowerCase()
+      .trim()
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/^-+|-+$/g, '')
+  }
+
+  const escapeHtml = (value) => {
+    return String(value || '').replace(/[&<>"']/g, (char) => {
+      return {
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&#39;'
+      }[char]
+    })
+  }
+
+  const renderProjects = () => {
+    const projects = window.portfolioProjects || []
+    const portfolioContainer = select('.portfolio-container')
+    const portfolioFilters = select('#portfolio-flters')
+
+    if (!portfolioContainer || !portfolioFilters || !projects.length) return
+
+    const categories = [...new Set(projects.map(project => project.category).filter(Boolean))]
+
+    portfolioFilters.innerHTML = [
+      '<li data-filter="*" class="filter-active">All</li>',
+      ...categories.map(category => {
+        return `<li data-filter=".filter-${slugify(category)}">${escapeHtml(category)}</li>`
+      })
+    ].join('')
+
+    portfolioContainer.innerHTML = projects.map(project => {
+      const categoryClass = `filter-${slugify(project.category || 'other')}`
+      const title = escapeHtml(project.title)
+      const image = escapeHtml(project.image)
+      const previewUrl = escapeHtml(project.previewUrl || project.image)
+      const projectUrl = escapeHtml(project.projectUrl || '#')
+
+      return `
+        <div class="col-lg-4 col-md-6 portfolio-item ${categoryClass}">
+          <article class="project-card">
+            <img src="${image}" class="img-fluid" alt="${escapeHtml(project.imageAlt || project.title)}">
+            <div class="portfolio-info">
+              <p class="project-type">${escapeHtml(project.type || project.category)}</p>
+              <h4>${title}</h4>
+              <p>${escapeHtml(project.description)}</p>
+              <div class="project-links">
+                <a href="${previewUrl}" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="${title}" aria-label="Preview ${title}"><i class="bx bx-plus"></i></a>
+                <a href="${projectUrl}" class="details-link" title="More Details" aria-label="Open ${title} project"><i class="bx bx-link"></i></a>
+              </div>
+            </div>
+          </article>
+        </div>
+      `
+    }).join('')
+  }
+
   /**
    * Navbar links active state on scroll
    */
@@ -201,9 +263,11 @@
   });
 
   /**
-   * Porfolio isotope and filter
+   * Portfolio cards, isotope, and filter
    */
   window.addEventListener('load', () => {
+    renderProjects()
+
     let portfolioContainer = select('.portfolio-container');
     if (portfolioContainer) {
       let portfolioIsotope = new Isotope(portfolioContainer, {
@@ -227,13 +291,12 @@
       }, true);
     }
 
-  });
-
-  /**
-   * Initiate portfolio lightbox 
-   */
-  const portfolioLightbox = GLightbox({
-    selector: '.portfolio-lightbox'
+    /**
+     * Initiate portfolio lightbox
+     */
+    GLightbox({
+      selector: '.portfolio-lightbox'
+    });
   });
 
   /**
