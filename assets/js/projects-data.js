@@ -30,23 +30,44 @@ window.portfolioProjects = [
     previewUrl: "assets/img/portfolio/Search and Rescue Robot.png"
   },
   {
-    title: "GS Portfolio Website",
-    category: "Web Design",
-    type: "Web Design",
-    image: "assets/img/portfolio/GS Portfolio Website.png",
-    imageAlt: "GS Portfolio Website screenshot",
-    description: "A personal portfolio built to document projects, sharpen frontend fundamentals, and present work clearly.",
-    projectUrl: "https://github.com/TayGuangSheng/GS-Portfolio-Website",
-    previewUrl: "assets/img/portfolio/GS Portfolio Website.png"
-  },
-  {
     title: "Digital Clock",
-    category: "Web Design",
+    category: "Web Application",
     type: "Web Utility",
     image: "assets/img/portfolio/Digital Clock.png",
     imageAlt: "Digital Clock project screenshot",
     description: "A digital clock with hourly reminders designed to help users step away and take regular breaks.",
     projectUrl: "https://tayguangsheng.github.io/Digital-Clock-with-Hourly-Reminder/",
     previewUrl: "assets/img/portfolio/Digital Clock.png"
+  },
+  {
+    title: "KTX Ghost Train",
+    category: "Game Design",
+    type: "Web Game",
+    image: "assets/img/portfolio/KTX Ghost Train.png",
+    imageAlt: "KTX Ghost Train project screenshot",
+    description: "A single-player, Korean inspired game where players collect points while avoiding ghosts along the railway.",
+    projectUrl: "https://tayguangsheng.github.io/KTX-Ghost-Train/",
+    previewUrl: "assets/img/portfolio/KTX Ghost Train.png"
+  },
+  {
+    title: "MySG Dash",
+    category: "Web Application",
+    type: "Productivity",
+    image: "assets/img/portfolio/MySG Dash.png",
+    imageAlt: "MySG Dash project screenshot",
+    description: "One glance at all the information you need before leaving home.",
+    projectUrl: "https://my-sg-dash-9slwtgsk0-tayguangshengs-projects.vercel.app/",
+    previewUrl: "assets/img/portfolio/MySG Dash.png"
+  },
+  {
+    title: "SG Route Planner",
+    category: "Web Application",
+    type: "Productivity",
+    image: "assets/img/portfolio/SG Route Planner.png",
+    imageAlt: "SG Route Planner project screenshot",
+    description: "A simple free route planning tool for drivers navigating Singapore in the shorest time.",
+    projectUrl: "https://singapore-route-planner-651ymmboj-tayguangshengs-projects.vercel.app/",
+    previewUrl: "assets/img/portfolio/SG Route Planner.png"
   }
 ];
+
